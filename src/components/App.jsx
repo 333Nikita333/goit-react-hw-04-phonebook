@@ -4,17 +4,17 @@ import Form from './Form';
 import Filter from './Filter';
 import ContactsList from './ContactsList';
 import { AppBox } from './App.styled';
-import { loadStorage, saveStorage } from 'services/storage';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { loadStorage, saveStorage } from 'services/storage';
 
-export function App() {
+export default function App() {
   const LOCLAL_STORAGE_KEY = 'contacts';
   const [contacts, setContacts] = useState(
     () => loadStorage(LOCLAL_STORAGE_KEY) ?? []
   );
   const [filter, setFilter] = useState('');
-
+  
   useEffect(() => {
     saveStorage(LOCLAL_STORAGE_KEY, contacts);
   }, [contacts]);
