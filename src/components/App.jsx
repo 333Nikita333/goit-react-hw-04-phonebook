@@ -6,7 +6,7 @@ import ContactsList from './ContactsList';
 import { AppBox } from './App.styled';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { loadStorage, saveStorage } from 'services/storage';
+import { loadStorage, saveStorage } from 'Services/storage';
 
 export default function App() {
   const LOCLAL_STORAGE_KEY = 'contacts';
