@@ -35,10 +35,8 @@ export default function App() {
     );
   }
 
-  function handleSubmit({ name: newName, number }) {
-    checkСontact(newName)
-      ? notifiesAlert(newName)
-      : addContact(newName, number);
+  function handleSubmit(name, number) {
+    checkСontact(name) ? notifiesAlert(name) : addContact(name, number);
   }
 
   return (
