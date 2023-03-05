@@ -1,16 +1,64 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
+import Form from './Form';
+import Filter from './Filter';
+import ContactsList from './ContactsList';
+import { AppBox } from './App.styled';
+import { loadStorage, saveStorage } from 'Services/storage';
+
+export default function App() {
+  const LOCLAL_STORAGE_KEY = 'contacts';
+  const [contacts, setContacts] = useState(
+    () => loadStorage(LOCLAL_STORAGE_KEY) ?? []
   );
-};
+  const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    saveStorage(LOCLAL_STORAGE_KEY, contacts);
+  }, [contacts]);
+
+  function notifiesAlert(nameContact) {
+    alert(`${nameContact} is already in contacts.`);
+  }
+
+  function checkСontact(nameContact) {
+    return contacts.some(contact => contact.name === nameContact);
+  }
+
+  function addContact(name, number) {
+    setContacts(prevState => [...prevState, { id: nanoid(4), name, number }]);
+  }
+
+  function onDeleteContact(contactId) {
+    setContacts(prevState =>
+      prevState.filter(contact => contact.id !== contactId)
+    );
+  }
+
+  function handleSubmit({ name: newName, number }) {
+    checkСontact(newName)
+      ? notifiesAlert(newName)
+      : addContact(newName, number);
+  }
+
+  return (
+    <AppBox>
+      <h1>Phonebook</h1>
+      <Form onSubmit={handleSubmit} />
+
+      <h2>Contacts</h2>
+      {contacts !== undefined && contacts.length > 0 ? (
+        <>
+          <Filter setFilter={setFilter} filter={filter} />
+          <ContactsList
+            contacts={contacts}
+            filter={filter}
+            onDeleteContact={onDeleteContact}
+          />
+        </>
+      ) : (
+        <p>Contacts list is empty</p>
+      )}
+    </AppBox>
+  );
+}
