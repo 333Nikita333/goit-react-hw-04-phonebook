@@ -4,7 +4,9 @@ import Form from './Form';
 import Filter from './Filter';
 import ContactsList from './ContactsList';
 import { AppBox } from './App.styled';
-import { loadStorage, saveStorage } from 'Services/storage';
+import { loadStorage, saveStorage } from 'services/storage';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const LOCLAL_STORAGE_KEY = 'contacts';
@@ -18,7 +20,7 @@ export default function App() {
   }, [contacts]);
 
   function notifiesAlert(nameContact) {
-    alert(`${nameContact} is already in contacts.`);
+    return toast.error(`${nameContact} is already in contacts.`);
   }
 
   function checkСontact(nameContact) {
@@ -41,6 +43,7 @@ export default function App() {
 
   return (
     <AppBox>
+      <ToastContainer autoClose={2000} position="top-center"/>
       <h1>Phonebook</h1>
       <Form onSubmit={handleSubmit} />
 

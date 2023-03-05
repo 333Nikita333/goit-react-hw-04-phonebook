@@ -1,15 +1,22 @@
+import { Form, Field } from 'formik';
 import styled from 'styled-components';
 
-export const FormBox = styled.form`
+export const FormBox = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
-  padding: 15px;
+  padding: 20px;
+  max-width: 220px;
 
   background: white;
   border-radius: 30px;
 
   & label {
     display: block;
+    width: 100%;
 
     & span {
       display: block;
@@ -24,7 +31,7 @@ export const FormBox = styled.form`
   }
 `;
 
-export const InputName = styled.input`
+export const InputName = styled(Field)`
   display: block;
   padding: 0 20px;
   margin-bottom: 10px;
