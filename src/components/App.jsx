@@ -8,7 +8,7 @@ import { loadStorage, saveStorage } from 'services/storage';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function App() {
+export function App() {
   const LOCLAL_STORAGE_KEY = 'contacts';
   const [contacts, setContacts] = useState(
     () => loadStorage(LOCLAL_STORAGE_KEY) ?? []
