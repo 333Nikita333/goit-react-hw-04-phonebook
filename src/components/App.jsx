@@ -14,7 +14,7 @@ export default function App() {
     () => loadStorage(LOCLAL_STORAGE_KEY) ?? []
   );
   const [filter, setFilter] = useState('');
-  
+
   useEffect(() => {
     saveStorage(LOCLAL_STORAGE_KEY, contacts);
   }, [contacts]);
@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <AppBox>
-      <ToastContainer autoClose={2000} position="top-center"/>
+      <ToastContainer autoClose={2000} position="top-center" />
       <h1>Phonebook</h1>
       <Form onSubmit={handleSubmit} />
 
