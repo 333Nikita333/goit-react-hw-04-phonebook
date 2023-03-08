@@ -2,24 +2,19 @@ import { Form, Field } from 'formik';
 import styled from 'styled-components';
 
 export const FormBox = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
-  max-width: 220px;
 
   background: white;
   border-radius: 30px;
 
   & label {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 
     & span {
-      display: block;
       margin-bottom: 15px;
 
       text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb,
@@ -32,7 +27,6 @@ export const FormBox = styled(Form)`
 `;
 
 export const InputName = styled(Field)`
-  display: block;
   padding: 0 20px;
   margin-bottom: 10px;
   background: #e9eff6;
